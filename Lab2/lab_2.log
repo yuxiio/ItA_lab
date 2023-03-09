@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.10) (preloaded format=xelatex 2023.2.25)  25 FEB 2023 22:48
+This is XeTeX, Version 3.141592653-2.6-0.999994 (MiKTeX 22.10) (preloaded format=xelatex 2023.2.25)  9 MAR 2023 21:48
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**./lab_1.tex
-(lab_1.tex
+**./lab_2.tex
+(lab_2.tex
 LaTeX2e <2022-06-01> patch level 5
 L3 programming layer <2022-09-28>
 (C:\Users\24681\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -1049,15 +1049,8 @@ Package: mathrsfs 1996/01/01 Math RSFS package v1.0 (jk)
 Package hyperref Info: Option `breaklinks' set `true' on input line 377.
 Package hyperref Info: Option `colorlinks' set `true' on input line 377.
 
-(lab_1.aux
-
-LaTeX Warning: Label `ux63d2ux5165ux6392ux5e8f' multiply defined.
-
-
-LaTeX Warning: Label `ux5f52ux5e76ux6392ux5e8f' multiply defined.
-
-)
-\openout1 = `lab_1.aux'.
+(lab_2.aux)
+\openout1 = `lab_2.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 384.
 LaTeX Font Info:    ... okay on input line 384.
@@ -1083,7 +1076,8 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: longtable package is loaded.
- (C:\Users\24681\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
+
+(C:\Users\24681\AppData\Local\Programs\MiKTeX\tex/latex/caption\ltcaption.sty
 Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 )
 Package caption Info: End \AtBeginDocument code.
@@ -1329,9 +1323,9 @@ LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/cmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
 t line 384.
 Package hyperref Info: Link coloring ON on input line 384.
-(lab_1.out) (lab_1.out)
+(lab_2.out) (lab_2.out)
 \@outlinefile=\write5
-\openout5 = `lab_1.out'.
+\openout5 = `lab_2.out'.
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
 (Font)              scaled to size 12.00128pt on input line 386.
@@ -1366,6 +1360,10 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 
 LaTeX Warning: No \author given.
 
+Missing character: There is no ≤ in font [lmroman10-regular]:mapping=tex-text;!
+[1
+
+]
 
 Package fontspec Info: Could not resolve font "FangSong/BI" (it probably
 (fontspec)             doesn't exist).
@@ -1390,88 +1388,33 @@ Package fontspec Info: Font family 'FangSong(0)' created for font 'FangSong'
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00053pt on input line 427.
+(Font)              scaled to size 5.00053pt on input line 474.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 427.
+(Font)              scaled to size 4.99947pt on input line 474.
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 476.
+ [2] [3]
 
 LaTeX Font Warning: Font shape `TU/FangSong(0)/m/it' undefined
-(Font)              using `TU/FangSong(0)/m/n' instead on input line 428.
+(Font)              using `TU/FangSong(0)/m/n' instead on input line 555.
 
-LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
-(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 431.
-[1
-
-] [2]
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.95116pt on input line 489.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.6658pt on input line 489.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.47559pt on input line 489.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 10.94882pt on input line 489.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.66417pt on input line 489.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.47441pt on input line 489.
-
-
-LaTeX Font Warning: Font shape `U/rsfs/m/n' in size <5.475> not available
-(Font)              size <5> substituted on input line 489.
-
-[3] [4]
-File: lab_1_files/lab_1_11_1.png Graphic file (type bmp)
-<lab_1_files/lab_1_11_1.png>
- [5]
-Underfull \hbox (badness 10000) in paragraph at lines 622--623
-
- []
-
-File: lab_1_files/lab_1_11_2.png Graphic file (type bmp)
-<lab_1_files/lab_1_11_2.png>
-[6]
-Underfull \hbox (badness 10000) in paragraph at lines 627--628
-
- []
-
-[7] [8]
-File: lab_1_files/lab_1_16_1.png Graphic file (type bmp)
-<lab_1_files/lab_1_16_1.png>
- [9]
-Underfull \hbox (badness 10000) in paragraph at lines 722--723
-
- []
-
-File: lab_1_files/lab_1_16_2.png Graphic file (type bmp)
-<lab_1_files/lab_1_16_2.png>
-[10]
-Underfull \hbox (badness 10000) in paragraph at lines 727--728
-
- []
-
-File: ./1.png Graphic file (type bmp)
-<./1.png>
-[11] [12] (lab_1.aux)
-
-LaTeX Font Warning: Size substitutions with differences
-(Font)              up to 0.475pt have occurred.
-
+[4] [5] [6]
+File: ./img/1.png Graphic file (type bmp)
+<./img/1.png>
+ [7] [8] (lab_2.aux)
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
-Package rerunfilecheck Info: File `lab_1.out' has not changed.
-(rerunfilecheck)             Checksum: 1F2BA86EE5C9CBF7D21B29CECD3A51EF;2463.
+Package rerunfilecheck Info: File `lab_2.out' has not changed.
+(rerunfilecheck)             Checksum: E0844AD17EB697F5F4061F0A83489332;1435.
  ) 
 Here is how much of TeX's memory you used:
- 33818 strings out of 410532
- 691507 string characters out of 2813299
- 1202809 words of memory out of 3000000
- 54470 multiletter control sequences out of 15000+600000
- 479070 words of font info for 116 fonts, out of 8000000 for 9000
+ 33674 strings out of 410532
+ 684082 string characters out of 2813299
+ 1198408 words of memory out of 3000000
+ 54343 multiletter control sequences out of 15000+600000
+ 476044 words of font info for 95 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,7n,115p,521b,652s stack positions out of 10000i,1000n,20000p,200000b,80000s
+ 99i,7n,115p,521b,656s stack positions out of 10000i,1000n,20000p,200000b,80000s
 
-Output written on lab_1.pdf (12 pages).
+Output written on lab_2.pdf (8 pages).

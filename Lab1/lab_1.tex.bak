@@ -2,9 +2,7 @@
 
     \usepackage[breakable]{tcolorbox}
     \usepackage{parskip} % Stop auto-indenting (to mimic markdown behaviour)
-    \usepackage{fontspec, xunicode, xltxtra}
-	\setmainfont{Microsoft YaHei}
-	
+    
 
     % Basic figure setup, for now with no caption control since it's done
     % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
@@ -166,7 +164,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{lab\_1}
+    \title{实验一 插入排序与归并排序的实验性能比较}
     
     
     
@@ -425,7 +423,7 @@
 函数实现（python）}\label{ux63d2ux5165ux6392ux5e8fux4e0eux5f52ux5e76ux6392ux5e8f-ux51fdux6570ux5b9eux73b0python}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{55}{\boxspacing}
+\prompt{In}{incolor}{1}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} @param    arr     需要排序的序列数组}
 \PY{c+c1}{\PYZsh{} @param    start   排序序列的初始index，一般为0}
@@ -507,7 +505,7 @@ i 个元素的插入操作时间复杂度为 i，总的时间复杂度为：
 函数实现}\label{ux751fux6210ux4e0dux540cux89c4ux6a21ux968fux673aux6574ux6570ux6d4bux8bd5ux96c6-ux51fdux6570ux5b9eux73b0}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{56}{\boxspacing}
+\prompt{In}{incolor}{2}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{random}
 
@@ -515,7 +513,7 @@ i 个元素的插入操作时间复杂度为 i，总的时间复杂度为：
 
 \PY{c+c1}{\PYZsh{} @param n      测试集规模，生成n个随机数列表}
 
-\PY{k}{def} \PY{n+nf}{generateTestSe\PYZus{}Int}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+\PY{k}{def} \PY{n+nf}{generateTestSet\PYZus{}Int}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
     \PY{n+nb}{list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
     \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
     \PY{k}{while} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{n}\PY{p}{:}
@@ -530,7 +528,7 @@ i 个元素的插入操作时间复杂度为 i，总的时间复杂度为：
 函数实现}\label{ux8ba1ux7b97ux8fd0ux884cux65f6ux95f4ux5e76ux8fd4ux56de10ux6b21ux7ed3ux679cux5e73ux5747ux503c-ux51fdux6570ux5b9eux73b0}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{57}{\boxspacing}
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{time}
 
@@ -542,7 +540,7 @@ i 个元素的插入操作时间复杂度为 i，总的时间复杂度为：
     \PY{n+nb}{sum} \PY{o}{=} \PY{l+m+mi}{0}
     \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
     \PY{k}{while} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{k}\PY{p}{:}
-        \PY{n+nb}{list} \PY{o}{=} \PY{n}{generateTestSe\PYZus{}Int}\PY{p}{(}\PY{n}{n}\PY{p}{)}
+        \PY{n+nb}{list} \PY{o}{=} \PY{n}{generateTestSet\PYZus{}Int}\PY{p}{(}\PY{n}{n}\PY{p}{)}
         \PY{n}{t1} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{perf\PYZus{}counter\PYZus{}ns}\PY{p}{(}\PY{p}{)}
         \PY{n}{fun}\PY{p}{(}\PY{n+nb}{list}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
         \PY{n}{t2} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{perf\PYZus{}counter\PYZus{}ns}\PY{p}{(}\PY{p}{)}
@@ -556,7 +554,7 @@ i 个元素的插入操作时间复杂度为 i，总的时间复杂度为：
 \subsubsection{主体运行代码}\label{ux4e3bux4f53ux8fd0ux884cux4ee3ux7801}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{132}{\boxspacing}
+\prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
 
@@ -575,7 +573,7 @@ i 个元素的插入操作时间复杂度为 i，总的时间复杂度为：
 \end{tcolorbox}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{ }{\boxspacing}
+\prompt{In}{incolor}{6}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{getSecond} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x} \PY{o}{/} \PY{l+m+mf}{1e3} \PY{c+c1}{\PYZsh{} 从微秒ms转换为秒s}
 
@@ -590,7 +588,7 @@ i 个元素的插入操作时间复杂度为 i，总的时间复杂度为：
 plot）}\label{ux79d1ux5b66ux7ed8ux56fepandas-plot}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{135}{\boxspacing}
+\prompt{In}{incolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
 
@@ -612,7 +610,7 @@ plot）}\label{ux79d1ux5b66ux7ed8ux56fepandas-plot}}
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{135}{\boxspacing}
+\prompt{Out}{outcolor}{7}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 <AxesSubplot: xlabel='scale'>
 \end{Verbatim}
@@ -634,29 +632,25 @@ plot）}\label{ux79d1ux5b66ux7ed8ux56fepandas-plot}}
 \hypertarget{ux63d2ux5165ux6392ux5e8f}{%
 \paragraph{插入排序}\label{ux63d2ux5165ux6392ux5e8f}}
 
-\[假定1 \cdot 10^{4}规模下的运行时间为基准，设为t_{1}，规模为n_{1} = 10^{4}。
-t_{1} = n_{1}^{2} \cdot t
-\newline则n_{2}规模下，
-t_{2}=n_{2}^{2} \cdot t = (\frac{n_{2}}{n_{1}}) ^ {2} \cdot t_{1}
-\newline t_{1} 为实践所得，已知。而n_{2} =  {k \cdot 10^{4},k \in (1,2,3,4,5)}
-\]
+假定1*10\^{}4规模下的运行时间为基准，设为t1，规模为n1 = 10\^{}4。
+\[t_{1} = n_{1}^{2} \cdot t\] 。则n2规模下，
+\[t_{2}=n_{2}^{2} \cdot t = (\frac{n_{2}}{n_{1}}) ^ {2} \cdot t_{1}\] t1
+为实践所得，已知。而 \[n2 =  {k \cdot 10^{4},k \in (1,2,3,4,5)}\]
 
 \hypertarget{ux5f52ux5e76ux6392ux5e8f}{%
 \paragraph{归并排序}\label{ux5f52ux5e76ux6392ux5e8f}}
 
-\[假定1 \cdot 10^{4}规模下的运行时间为基准，设为t_{1}，规模为n_{1} = 10^{4}。
-t_{1} = n_{1} \cdot \log_2{n_{1}} \cdot t
-\newline则n_{2}规模下，
-t_{2}=n_{2} \cdot \log_2{n_{2}} \cdot t = (\frac{n_{2}}{n_{1}}) \times (\frac{\log_2{n_{2}}}{\log_2{n_{1}}}) \cdot t_{1} = (\frac{n_{2}}{n_{1}}) \times (\log_{n_{1}}{n_{2}}) \cdot t_{1}
-\newline t_{1} 为实践所得，已知。而n_{2} =  {k \cdot 10^{4},k \in (1,2,3,4,5)}
-\]
+假定1*10\^{}4规模下的运行时间为基准，设为t1，规模为n1 = 10\^{}4。
+\[t_{1} = n_{1} \cdot \log_2{n_{1}} \cdot t\] 。则n2规模下，
+\[t_{2}=n_{2} \cdot \log_2{n_{2}} \cdot t = (\frac{n_{2}}{n_{1}}) \times (\frac{\log_2{n_{2}}}{\log_2{n_{1}}}) \cdot t_{1} = (\frac{n_{2}}{n_{1}}) \times (\log_{n_{1}}{n_{2}}) \cdot t_{1}\]
+t1 为实践所得，已知。而 \[n2 =  {k \cdot 10^{4},k \in (1,2,3,4,5)}\]
 
     \hypertarget{ux8ba1ux7b97ux7406ux8bbaux65f6ux95f4-ux51fdux6570ux5b9eux73b0}{%
 \subsubsection{计算理论时间
 函数实现}\label{ux8ba1ux7b97ux7406ux8bbaux65f6ux95f4-ux51fdux6570ux5b9eux73b0}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{138}{\boxspacing}
+\prompt{In}{incolor}{8}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{k+kn}{import} \PY{n+nn}{math}
 
@@ -680,7 +674,7 @@ t_{2}=n_{2} \cdot \log_2{n_{2}} \cdot t = (\frac{n_{2}}{n_{1}}) \times (\frac{\l
 \subsubsection{理论与实践时间对比·科学绘图}\label{ux7406ux8bbaux4e0eux5b9eux8df5ux65f6ux95f4ux5bf9ux6bd4ux79d1ux5b66ux7ed8ux56fe}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{143}{\boxspacing}
+\prompt{In}{incolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{n}{theoryTime\PYZus{}insertion} \PY{o}{=} \PY{n}{calculateTheoryTime\PYZus{}insertion}\PY{p}{(}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{insertion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
 
@@ -716,7 +710,7 @@ t_{2}=n_{2} \cdot \log_2{n_{2}} \cdot t = (\frac{n_{2}}{n_{1}}) \times (\frac{\l
 \end{tcolorbox}
 
             \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{143}{\boxspacing}
+\prompt{Out}{outcolor}{9}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 <AxesSubplot: title=\{'center': 'Merge Sort'\}, xlabel='scale'>
 \end{Verbatim}
@@ -735,21 +729,20 @@ t_{2}=n_{2} \cdot \log_2{n_{2}} \cdot t = (\frac{n_{2}}{n_{1}}) \times (\frac{\l
     \hypertarget{ux5206ux6790}{%
 \subsubsection{分析}\label{ux5206ux6790}}
 
-观察理论与实践的时间对比。归并排序几近相等，而插入排序在规模为5万时，与理论相差巨大。远高于理论计算结果。
+观察理论与实践的时间对比。归并排序与插入排序的两条曲线几近相等。
 
-通过探讨分析研究，我认为，出现如上现象的原因有以下几点： 1.
-python为动态语言，在进行数据操纵时，往往需要先判断该数据变量的具体类型，这个操作可能需要占用几个指令时间，而我们的基准时间为规模在1万时的用时。此时算法操作数据变量的次数较少，运行这些次数的指令时间可以不计。但是当规模为5万，且在时间复杂度为指数级别的放大作用下，此时算法要操作的数据变量次数已经颇具规模，其指令时间已经累加到一个不可忽视的地步。因此实际时间会比理论用时更长。
-2.
-python为解释型语言，运行时，往往是python解释器一句一句读取语句，解释为底层语言进行运行。在小规模问题上，如我们的基准时间规模1万，运行时间与编译型语言相近。但在大量重复性的操作中，python的运行依旧是解释执行，并不会记住操作指令顺序从而忽略解释直接运行。同时解释语句的操作依旧消耗指令时间。因此相比编译型语言来说，python处理该类问题，时间消耗过大。
-3.
-在实际运行过程中，我的程序跑一遍大致需要40min。在实验过程中，我将电脑挂载运行，这个40分钟中，我的电脑出现休屏情况（类休眠状态），可能会导致CPU分给该python程序的资源和频率出现波动，导致运行时间与理论值相差甚远。
+但是整体上，理论却偏高于实际用时。
+
+通过探讨分析研究，我认为，出现如上现象的原因是python在做大量重复性数据操纵时，进行了优化。使得在规模越大时，时间却比以1万规模为基准的用时少。
 
     \hypertarget{ux8fd0ux884cux4ee3ux7801ux622aux56fe}{%
 \subsubsection{运行代码截图}\label{ux8fd0ux884cux4ee3ux7801ux622aux56fe}}
 
+https://github.com/yuxiio/ItA\_lab.git 代码仓库地址
+
 ps.
-40分钟实锤（python真的慢\ldots 我用的还是3.11版本，官方誉为最快的一代python\ldots）
-\includegraphics{./lab_1_files/1.jpg}
+23分钟用时（python真的慢\ldots 我用的还是3.11版本，官方誉为最快的一代python\ldots）
+\includegraphics{./1.png}
 
     \hypertarget{ux8c03ux8bd5ux8fc7ux7a0bux4e2dux9047ux5230ux7684ux95eeux9898}{%
 \subsection{调试过程中遇到的问题}\label{ux8c03ux8bd5ux8fc7ux7a0bux4e2dux9047ux5230ux7684ux95eeux9898}}
@@ -758,13 +751,15 @@ ps.
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  归并忘了咋写，看了看CLRS，又想起来了，还学会了哨兵写法。
+  归并忘了咋写，看了看课本CLRS，又想起来了，还学会了哨兵写法。
 \item
   python运行太慢，没办法解决，只能挂着运行。
 \item
   pandas好久不用忘了咋写，看了看教程，复习了一下画图
 \item
-  插入排序规模5万时理论值与实际值相差甚大，不懂原因。想了好久，查阅各种资料，询问chatGPT，勉强拼凑出个人的浅薄见解
+  之前跑的一遍实验用时40分钟，插入排序规模5万时理论值与实际值相差甚大，（正常为60秒多，那一次却平均用时160秒）不懂原因。想了好久，查阅各种资料，询问chatGPT，勉强得出一个结论：挂后台运行时电脑息屏，导致CPU输出功率下降，使得运算时间大量上升。
+\item
+  jupyter 导出为中文pdf很麻烦，调试了好久，才勉强弄出一版。
 \end{enumerate}
 
 \hypertarget{ux603bux7ed3ux5206ux6790}{%

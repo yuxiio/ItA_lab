@@ -164,7 +164,7 @@
     \renewcommand{\LaTeX}{\textrm{\Oldlatex}}
     % Document parameters
     % Document title
-    \title{实验一 插入排序与归并排序的实验性能比较}
+    \title{实验二 排序算法}
     
     
     
@@ -388,42 +388,200 @@
     
 
     
-    \hypertarget{ux5b9eux9a8cux4e00-lab-1-ux63d2ux5165ux6392ux5e8fux4e0eux5f52ux5e76ux6392ux5e8fux7684ux5b9eux9a8cux6027ux80fdux6bd4ux8f83}{%
-\section{实验一 · Lab 1 ·
-插入排序与归并排序的实验性能比较}\label{ux5b9eux9a8cux4e00-lab-1-ux63d2ux5165ux6392ux5e8fux4e0eux5f52ux5e76ux6392ux5e8fux7684ux5b9eux9a8cux6027ux80fdux6bd4ux8f83}}
+    \hypertarget{ux5b9eux9a8cux4e8c-lab-2-ux6392ux5e8fux7b97ux6cd5}{%
+\section{实验二 · Lab 2 ·
+排序算法}\label{ux5b9eux9a8cux4e8c-lab-2-ux6392ux5e8fux7b97ux6cd5}}
 
-\hypertarget{ux9700ux6c42ux5206ux6790}{%
-\subsection{需求分析}\label{ux9700ux6c42ux5206ux6790}}
+\hypertarget{ux5b9eux9a8cux76eeux7684}{%
+\subsection{实验目的}\label{ux5b9eux9a8cux76eeux7684}}
+
+通过求解实际排序问题，掌握算法设计和分析的流程和方法。
+
+\hypertarget{ux5b9eux9a8cux5185ux5bb9}{%
+\subsection{实验内容}\label{ux5b9eux9a8cux5185ux5bb9}}
+
+学校正在选举学生会成员，有n(n≤999)名候选人，每名候选人编号分别从1到
+n，现在收集到了m(m\textless=2000000)
+张选票，每张选票都写了一个候选人编号。现在想把这些堆积如山的选票按照投票数字从小到大排序。
 
 \begin{itemize}
 \tightlist
 \item
-  输入：规模为n的测试集（列表，n分别取10k,20k,30k,40k,50k）
+  输入格式：输入n和m以及m个选票上的数字。
 \item
-  输出：排序过后的顺序集，以及不同规模下、不同排序方法的消耗时间
-\item
-  程序功能：
-
-  \begin{itemize}
-  \tightlist
-  \item
-    针对每一个输入规模n，随机产生10组测试样本，统计两种不同排序算法在10个样本上的平均运行时间；画出这两种不同排序算法在10个随机样本的平均运行时间与输入规模n的关系
-  \item
-    画出理论效率分析的曲线和实测的效率曲线
-  \end{itemize}
-\item
-  测试集：由于取特定值的操作时间复杂度在同一数据结构中保持一致，在对不同数据结构进行排序操作通常不考虑取值时间。则为方便测试，本实验测试集均为整数（int）
+  输出格式：求出排序后的选票编号。
 \end{itemize}
 
-\hypertarget{ux8be6ux7ec6ux8bbeux8ba1ux4e0eux5b9eux9a8c}{%
-\subsection{详细设计与实验}\label{ux8be6ux7ec6ux8bbeux8ba1ux4e0eux5b9eux9a8c}}
+输入输出样例：
 
-\hypertarget{ux63d2ux5165ux6392ux5e8fux4e0eux5f52ux5e76ux6392ux5e8f-ux51fdux6570ux5b9eux73b0python}{%
-\subsubsection{插入排序与归并排序
-函数实现（python）}\label{ux63d2ux5165ux6392ux5e8fux4e0eux5f52ux5e76ux6392ux5e8f-ux51fdux6570ux5b9eux73b0python}}
+输入：
+
+5 10
+
+2 5 2 2 5 2 2 2 1 2
+
+输出：
+
+1 2 2 2 2 2 2 2 5 5
+
+（注意：请用归并排序和插入排序，两者的时间复杂度应分别为nlogn 和
+n\^{}2）
+
+\hypertarget{ux5b9eux9a8cux8bbeux8ba1ux601dux8def}{%
+\subsection{实验设计思路}\label{ux5b9eux9a8cux8bbeux8ba1ux601dux8def}}
+
+由题意知，该问题是一个经典的排序问题。
+
+首先对题目进行抽象，为：给出一个长度为0-2000000的列表序列，里面元素为1-999的整型随机值。
+
+然后对该列表采用归并和插入排序，使其变成一个递增的序列。
+
+扩展该题，可以得出1\textasciitilde999号候选人的具体得票数，以及票数排序。同时尽可能确保列表在排序过程中稳定，不破坏相同元素的先后顺序。
+
+因此我们首先设计整体框架，搭出一个测试框架。具体流程如下：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  实现接收候选票函数，可以根据给出的n,m，接收一个长度为m，随机值为0\textasciitilde n整数的序列list，作为排序算法应用主体。
+\item
+  分别实现归并排序算法和插入排序算法函数
+\item
+  利用归并和插入函数进行实验
+\end{enumerate}
+
+我们可以搭出一个更通用的测试框架。具体流程如下：
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  实现生成随机候选票函数，可以根据给出的n,m，生成一个长度为m，随机值为0\textasciitilde n整数的序列list，作为排序算法应用主体。（务必确保随机性）
+\item
+  利用官方库sort函数，先对list进行排序，得到排序后序列list\_sorted作为成功组对照。
+\item
+  分别实现归并排序算法和插入排序算法函数
+\item
+  利用归并和插入函数进行实验，并与成功组对照，判断是否正确。即同时完成实验
+\end{enumerate}
+
+\hypertarget{ux4f2aux4ee3ux7801ux5b9eux73b0}{%
+\subsection{伪代码实现}\label{ux4f2aux4ee3ux7801ux5b9eux73b0}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{ }{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{n}{getVotes} \PY{p}{(}\PY{n+nb}{int} \PY{n}{n} \PY{p}{,} \PY{n+nb}{int} \PY{n}{m}\PY{p}{)}\PY{p}{:}
+    \PY{n+nb}{list} \PY{o}{=} \PY{n}{OS}\PY{o}{.}\PY{o+ow}{in}\PY{p}{(}\PY{p}{)}
+    \PY{k}{return} \PY{n+nb}{list}
+
+
+\PY{n}{generateVotes} \PY{p}{(}\PY{n+nb}{int} \PY{n}{n} \PY{p}{,} \PY{n+nb}{int} \PY{n}{m}\PY{p}{)}\PY{p}{:}
+    \PY{k}{for} \PY{l+m+mi}{1} \PY{n}{to} \PY{n}{m}\PY{p}{:}
+        \PY{n+nb}{list}\PY{o}{.}\PY{n}{insert}\PY{p}{(}\PY{n}{Random}\PY{o}{.}\PY{n}{int}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+    \PY{k}{return} \PY{n+nb}{list}
+
+\PY{n}{insertion\PYZus{}sort}\PY{p}{(}\PY{n}{A}\PY{p}{)}
+\PY{k}{for} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{2} \PY{n}{to} \PY{n}{length}\PY{p}{[}\PY{n}{A}\PY{p}{]}
+    \PY{n}{key} \PY{o}{=} \PY{n}{A}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+    \PY{n}{i} \PY{o}{=} \PY{n}{j} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
+    \PY{k}{while} \PY{n}{i} \PY{o}{\PYZgt{}} \PY{l+m+mi}{0} \PY{o+ow}{and} \PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZgt{}} \PY{n}{key}
+        \PY{n}{A}\PY{p}{[}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{A}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+        \PY{n}{i} \PY{o}{=} \PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}
+    \PY{n}{A}\PY{p}{[}\PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{key}
+
+
+\PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{r}\PY{p}{)}
+\PY{k}{if} \PY{n}{p} \PY{o}{\PYZlt{}} \PY{n}{r}
+    \PY{n}{q} \PY{o}{=} \PY{p}{(}\PY{n}{p} \PY{o}{+} \PY{n}{r}\PY{p}{)} \PY{o}{/} \PY{l+m+mi}{2}
+    \PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{q}\PY{p}{)}
+    \PY{n}{merge\PYZus{}sort}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{q} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{r}\PY{p}{)}
+    \PY{n}{merge}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{q}\PY{p}{,} \PY{n}{r}\PY{p}{)}
+
+\PY{n}{merge}\PY{p}{(}\PY{n}{A}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{q}\PY{p}{,} \PY{n}{r}\PY{p}{)}
+\PY{n}{n1} \PY{o}{=} \PY{n}{q} \PY{o}{\PYZhy{}} \PY{n}{p} \PY{o}{+} \PY{l+m+mi}{1}
+\PY{n}{n2} \PY{o}{=} \PY{n}{r} \PY{o}{\PYZhy{}} \PY{n}{q}
+\PY{n}{let} \PY{n}{L}\PY{p}{[}\PY{l+m+mf}{1.}\PY{o}{.}\PY{n}{n1} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]} \PY{o+ow}{and} \PY{n}{R}\PY{p}{[}\PY{l+m+mf}{1.}\PY{o}{.}\PY{n}{n2} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]} \PY{n}{be} \PY{n}{new} \PY{n}{arrays}
+\PY{k}{for} \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1} \PY{n}{to} \PY{n}{n1}
+    \PY{n}{L}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{A}\PY{p}{[}\PY{n}{p} \PY{o}{+} \PY{n}{i} \PY{o}{\PYZhy{}} \PY{l+m+mi}{1}\PY{p}{]}
+\PY{k}{for} \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{1} \PY{n}{to} \PY{n}{n2}
+    \PY{n}{R}\PY{p}{[}\PY{n}{j}\PY{p}{]} \PY{o}{=} \PY{n}{A}\PY{p}{[}\PY{n}{q} \PY{o}{+} \PY{n}{j}\PY{p}{]}
+\PY{n}{L}\PY{p}{[}\PY{n}{n1} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{infinity}
+\PY{n}{R}\PY{p}{[}\PY{n}{n2} \PY{o}{+} \PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{n}{infinity}
+\PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{n}{j} \PY{o}{=} \PY{l+m+mi}{1}
+\PY{k}{for} \PY{n}{k} \PY{o}{=} \PY{n}{p} \PY{n}{to} \PY{n}{r}
+    \PY{k}{if} \PY{n}{L}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{\PYZlt{}}\PY{o}{=} \PY{n}{R}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+        \PY{n}{A}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{L}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+        \PY{n}{i} \PY{o}{=} \PY{n}{i} \PY{o}{+} \PY{l+m+mi}{1}
+    \PY{k}{else}
+        \PY{n}{A}\PY{p}{[}\PY{n}{k}\PY{p}{]} \PY{o}{=} \PY{n}{R}\PY{p}{[}\PY{n}{j}\PY{p}{]}
+        \PY{n}{j} \PY{o}{=} \PY{n}{j} \PY{o}{+} \PY{l+m+mi}{1}
+
+
+\PY{n}{main}\PY{p}{:}
+    \PY{n}{n}\PY{p}{,}\PY{n}{m} \PY{o}{=} \PY{n}{OS}\PY{o}{.}\PY{o+ow}{in}\PY{p}{(}\PY{p}{)}
+    \PY{n+nb}{list} \PY{o}{=} \PY{n}{getVotes}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{m}\PY{p}{)}
+    \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}
+    \PY{n+nb}{list} \PY{o}{=} \PY{n}{yourFunction}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)} \PY{n}{此处为插入排序或者归并排序函数调用} 
+    \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+
+
+\PY{n}{main}\PY{p}{:} \PY{n}{通用}
+    \PY{n}{n}\PY{p}{,}\PY{n}{m} \PY{o}{=} \PY{n}{OS}\PY{o}{.}\PY{o+ow}{in}\PY{p}{(}\PY{p}{)}
+    \PY{n}{list0} \PY{o}{=} \PY{n}{generateVotes}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{m}\PY{p}{)}
+    \PY{n+nb}{list} \PY{o}{=} \PY{n}{list0}
+    \PY{n}{list\PYZus{}sorted} \PY{o}{=} \PY{n}{sort}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+    \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}
+    \PY{n+nb}{list} \PY{o}{=} \PY{n}{yourFunction}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)} \PY{n}{此处为插入排序或者归并排序函数调用} 
+    \PY{o}{\PYZhy{}}\PY{o}{\PYZhy{}}
+    \PY{k}{if} \PY{n+nb}{list} \PY{o}{==} \PY{n}{list\PYZus{}sorted}\PY{p}{:}
+        \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{success!}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{pythonux4ee3ux7801ux5b9eux73b0}{%
+\subsection{python代码实现}\label{pythonux4ee3ux7801ux5b9eux73b0}}
+
+\hypertarget{ux63a5ux6536ux5019ux9009ux7968ux51fdux6570ux5b9eux73b0}{%
+\subsubsection{接收候选票函数实现}\label{ux63a5ux6536ux5019ux9009ux7968ux51fdux6570ux5b9eux73b0}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{1}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k}{def} \PY{n+nf}{getVotes}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{m}\PY{p}{)}\PY{p}{:} \PY{c+c1}{\PYZsh{} 其实并没有利用循环来使用n,m，因为python的方便性}
+    \PY{n}{lst} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{n}{lst} \PY{o}{=} \PY{n+nb}{list}\PY{p}{(}\PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{int}\PY{p}{,} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Enter numbers separated by spaces.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+    \PY{k}{return} \PY{n}{lst}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{ux751fux6210ux968fux673aux5019ux9009ux7968ux51fdux6570ux5b9eux73b0}{%
+\subsubsection{生成随机候选票函数实现}\label{ux751fux6210ux968fux673aux5019ux9009ux7968ux51fdux6570ux5b9eux73b0}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{2}{\boxspacing}
+\begin{Verbatim}[commandchars=\\\{\}]
+\PY{k+kn}{import} \PY{n+nn}{random}
+
+\PY{k}{def} \PY{n+nf}{generateVotes}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{m}\PY{p}{)}\PY{p}{:}
+    \PY{n}{lst} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+    \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{1}
+    \PY{k}{while} \PY{n}{i}\PY{o}{\PYZlt{}}\PY{o}{=}\PY{n}{m}\PY{p}{:}
+        \PY{n}{lst}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+        \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+    \PY{k}{return} \PY{n}{lst}
+\end{Verbatim}
+\end{tcolorbox}
+
+    \hypertarget{ux5f52ux5e76ux6392ux5e8fux548cux63d2ux5165ux6392ux5e8fux51fdux6570ux5b9eux73b0}{%
+\subsubsection{归并排序和插入排序函数实现}\label{ux5f52ux5e76ux6392ux5e8fux548cux63d2ux5165ux6392ux5e8fux51fdux6570ux5b9eux73b0}}
+
+    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
+\prompt{In}{incolor}{3}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
 \PY{c+c1}{\PYZsh{} @param    arr     需要排序的序列数组}
 \PY{c+c1}{\PYZsh{} @param    start   排序序列的初始index，一般为0}
@@ -474,303 +632,73 @@
 \end{Verbatim}
 \end{tcolorbox}
 
-    \hypertarget{ux65f6ux95f4ux6548ux7387ux5206ux6790}{%
-\subsubsection{时间效率分析}\label{ux65f6ux95f4ux6548ux7387ux5206ux6790}}
-
-\hypertarget{ux63d2ux5165ux6392ux5e8f}{%
-\paragraph{插入排序}\label{ux63d2ux5165ux6392ux5e8f}}
-
-插入排序的基本操作是将一个元素插入到已经排好序的部分中，这一操作的时间复杂度取决于已排好序部分的长度，即插入位置的前面有多少个元素需要比较和移动。
-
-假设要排序的序列长度为
-n，那么在最坏情况下，每次插入操作都需要比较和移动整个已排序序列，因此第
-i 个元素的插入操作时间复杂度为 i，总的时间复杂度为：
-
-\[T(n) = 1 + 2 + 3 + ... + n-1
-= \frac{n(n-1)}{2}
-= O(n^{2})\]
-
-\hypertarget{ux5f52ux5e76ux6392ux5e8f}{%
-\paragraph{归并排序}\label{ux5f52ux5e76ux6392ux5e8f}}
-
-归并分为两个步骤。首先是分治，将大序列分成数个不可分的元素。这个过程时间复杂度为
-\[O(\log_2n)\]，n为序列规模。
-而第二个步骤为合并(merge)，它是完整遍历整个序列，因此时间复杂度为
-\[O(n)\]。
-
-两者组合，时间复杂度相乘，则总的时间复杂度为： \[n \cdot \log_2n\]
-
-    \hypertarget{ux751fux6210ux4e0dux540cux89c4ux6a21ux968fux673aux6574ux6570ux6d4bux8bd5ux96c6-ux51fdux6570ux5b9eux73b0}{%
-\subsubsection{生成不同规模随机整数测试集
-函数实现}\label{ux751fux6210ux4e0dux540cux89c4ux6a21ux968fux673aux6574ux6570ux6d4bux8bd5ux96c6-ux51fdux6570ux5b9eux73b0}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{2}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{random}
-
-\PY{n}{MAX\PYZus{}INT\PYZus{}NUMBER} \PY{o}{=} \PY{l+m+mi}{100000}     \PY{c+c1}{\PYZsh{} 随机数范围，暂定从0\PYZti{}10w}
-
-\PY{c+c1}{\PYZsh{} @param n      测试集规模，生成n个随机数列表}
-
-\PY{k}{def} \PY{n+nf}{generateTestSet\PYZus{}Int}\PY{p}{(}\PY{n}{n}\PY{p}{)}\PY{p}{:}
-    \PY{n+nb}{list} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-    \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
-    \PY{k}{while} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{n}\PY{p}{:}
-        \PY{n+nb}{list}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{random}\PY{o}{.}\PY{n}{randint}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{MAX\PYZus{}INT\PYZus{}NUMBER}\PY{p}{)}\PY{p}{)}
-        \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
-    \PY{k}{return} \PY{n+nb}{list}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \hypertarget{ux8ba1ux7b97ux8fd0ux884cux65f6ux95f4ux5e76ux8fd4ux56de10ux6b21ux7ed3ux679cux5e73ux5747ux503c-ux51fdux6570ux5b9eux73b0}{%
-\subsubsection{计算运行时间并返回10次结果平均值
-函数实现}\label{ux8ba1ux7b97ux8fd0ux884cux65f6ux95f4ux5e76ux8fd4ux56de10ux6b21ux7ed3ux679cux5e73ux5747ux503c-ux51fdux6570ux5b9eux73b0}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{3}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{time}
-
-\PY{c+c1}{\PYZsh{} @param fun    具体排序函数指针}
-\PY{c+c1}{\PYZsh{} @param n      测试集规模 如1e4\PYZhy{}\PYZgt{}10000}
-\PY{c+c1}{\PYZsh{} @param k      计算次数，用于求平均值}
-
-\PY{k}{def} \PY{n+nf}{returnCalculateRes\PYZus{}avg}\PY{p}{(}\PY{n}{fun}\PY{p}{,} \PY{n}{n}\PY{p}{,} \PY{n}{k}\PY{p}{)}\PY{p}{:}
-    \PY{n+nb}{sum} \PY{o}{=} \PY{l+m+mi}{0}
-    \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
-    \PY{k}{while} \PY{n}{i} \PY{o}{\PYZlt{}} \PY{n}{k}\PY{p}{:}
-        \PY{n+nb}{list} \PY{o}{=} \PY{n}{generateTestSet\PYZus{}Int}\PY{p}{(}\PY{n}{n}\PY{p}{)}
-        \PY{n}{t1} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{perf\PYZus{}counter\PYZus{}ns}\PY{p}{(}\PY{p}{)}
-        \PY{n}{fun}\PY{p}{(}\PY{n+nb}{list}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n+nb}{list}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
-        \PY{n}{t2} \PY{o}{=} \PY{n}{time}\PY{o}{.}\PY{n}{perf\PYZus{}counter\PYZus{}ns}\PY{p}{(}\PY{p}{)}
-        \PY{n+nb}{sum} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{n}{t2} \PY{o}{\PYZhy{}} \PY{n}{t1}\PY{p}{)}\PY{o}{/}\PY{l+m+mf}{1e6}
-        \PY{n}{i} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
-    \PY{k}{return} \PY{n+nb}{sum}\PY{o}{/}\PY{n}{k}
-\end{Verbatim}
-\end{tcolorbox}
-
     \hypertarget{ux4e3bux4f53ux8fd0ux884cux4ee3ux7801}{%
 \subsubsection{主体运行代码}\label{ux4e3bux4f53ux8fd0ux884cux4ee3ux7801}}
 
     \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
 \prompt{In}{incolor}{5}{\boxspacing}
 \begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+\PY{k}{try}\PY{p}{:}
+    \PY{n}{n}\PY{p}{,} \PY{n}{m} \PY{o}{=} \PY{n+nb}{map}\PY{p}{(}\PY{n+nb}{int}\PY{p}{,} \PY{n+nb}{input}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Please enter n and m, then press Enter:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}\PY{o}{.}\PY{n}{split}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+\PY{k}{except} \PY{n+ne}{ValueError}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{Please enter two integers separated by a space.}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+    \PY{n}{exit}\PY{p}{(}\PY{p}{)}
 
-\PY{n}{list1} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-\PY{n}{list2} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{:}
-    \PY{n}{list1}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{returnCalculateRes\PYZus{}avg}\PY{p}{(}\PY{n}{sort\PYZus{}insertion}\PY{p}{,}\PY{n}{i}\PY{o}{*}\PY{l+m+mf}{1e4}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
-    \PY{n}{list2}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{returnCalculateRes\PYZus{}avg}\PY{p}{(}\PY{n}{sort\PYZus{}merge}\PY{p}{,}\PY{n}{i}\PY{o}{*}\PY{l+m+mf}{1e4}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} list0 = generateVotes(n,m)}
+\PY{n}{list0} \PY{o}{=} \PY{n}{getVotes}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{n}{m}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 在此可以调整是否是自输入或者生成候选票}
 
-\PY{n}{dic} \PY{o}{=} \PY{p}{\PYZob{}}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{scale}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{p}{[}\PY{l+m+mf}{1e4}\PY{p}{,}\PY{l+m+mf}{2e4}\PY{p}{,}\PY{l+m+mf}{3e4}\PY{p}{,}\PY{l+m+mf}{4e4}\PY{p}{,}\PY{l+m+mf}{5e4}\PY{p}{]}\PY{p}{,}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{insertion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{n}{list1}\PY{p}{,}
-    \PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{merge}\PY{l+s+s2}{\PYZdq{}}\PY{p}{:}\PY{n}{list2}
-\PY{p}{\PYZcb{}}
+\PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{list0}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{n}{i}\PY{p}{,}\PY{n}{end}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+
+\PY{n}{lst} \PY{o}{=} \PY{n}{list0}\PY{o}{.}\PY{n}{copy}\PY{p}{(}\PY{p}{)}
+
+\PY{n}{list0}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{p}{)}
+
+\PY{c+c1}{\PYZsh{} sort\PYZus{}insertion(lst,0,len(lst)\PYZhy{}1)}
+\PY{n}{sort\PYZus{}merge}\PY{p}{(}\PY{n}{lst}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{n+nb}{len}\PY{p}{(}\PY{n}{lst}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+\PY{c+c1}{\PYZsh{} 在此可以调整排序函数的执行为哪个算法}
+
+\PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{if} \PY{n}{lst} \PY{o}{==} \PY{n}{list0}\PY{p}{:}
+    \PY{c+c1}{\PYZsh{} print(\PYZdq{}success!\PYZbs{}n\PYZbs{}n\PYZdq{})}
+    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{lst}\PY{p}{:}
+        \PY{n+nb}{print}\PY{p}{(}\PY{n}{i}\PY{p}{,}\PY{n}{end}\PY{o}{=}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{ }\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+\PY{k}{else}\PY{p}{:}
+    \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{error}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
 \end{Verbatim}
 \end{tcolorbox}
 
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{6}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{getSecond} \PY{o}{=} \PY{k}{lambda} \PY{n}{x} \PY{p}{:} \PY{n}{x} \PY{o}{/} \PY{l+m+mf}{1e3} \PY{c+c1}{\PYZsh{} 从微秒ms转换为秒s}
+    \begin{Verbatim}[commandchars=\\\{\}]
+2 5 2 2 5 2 2 2 1 2
 
+1 2 2 2 2 2 2 2 5 5
+    \end{Verbatim}
 
-\PY{n}{dic}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{insertion}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{getSecond}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{list1}\PY{p}{]}
-\PY{n}{dic}\PY{p}{[}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{merge}\PY{l+s+s2}{\PYZdq{}}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{getSecond}\PY{p}{(}\PY{n}{i}\PY{p}{)} \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{list2}\PY{p}{]}
-\end{Verbatim}
-\end{tcolorbox}
+    \hypertarget{ux4ee3ux7801ux8fd0ux884cux622aux56fe}{%
+\subsection{代码运行截图}\label{ux4ee3ux7801ux8fd0ux884cux622aux56fe}}
 
-    \hypertarget{ux79d1ux5b66ux7ed8ux56fepandas-plot}{%
-\subsubsection{科学绘图（pandas
-plot）}\label{ux79d1ux5b66ux7ed8ux56fepandas-plot}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{7}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
-
-\PY{n}{df} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{dic}\PY{p}{)}
-\PY{n}{df\PYZus{}insertion} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}\PY{p}{,}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{insertion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-\PY{n}{df\PYZus{}merge} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{df}\PY{p}{,}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{merge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-
-
-\PY{n}{df\PYZus{}insertion}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
-\PY{n}{df\PYZus{}merge}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
-
-\PY{n}{df\PYZus{}insertion}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{rot}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.6}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}
-            \PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{markeredgewidth}\PY{o}{=}\PY{l+m+mi}{5}
-            \PY{p}{,}\PY{n}{yticks}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{insertion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{copy}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{,}\PY{n}{xticks}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{copy}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
-\PY{n}{df\PYZus{}merge}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{rot}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.6}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}
-            \PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{markeredgewidth}\PY{o}{=}\PY{l+m+mi}{5}
-            \PY{p}{,}\PY{n}{yticks}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{merge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{copy}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{,}\PY{n}{xticks}\PY{o}{=}\PY{n}{pd}\PY{o}{.}\PY{n}{Series}\PY{p}{(}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{copy}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{7}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-<AxesSubplot: xlabel='scale'>
-\end{Verbatim}
-\end{tcolorbox}
-        
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{lab_1_files/lab_1_11_1.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{lab_1_files/lab_1_11_2.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \hypertarget{ux7406ux8bbaux65f6ux95f4ux8f6cux6362ux516cux5f0fux63a8ux5bfc}{%
-\subsubsection{理论时间转换公式推导}\label{ux7406ux8bbaux65f6ux95f4ux8f6cux6362ux516cux5f0fux63a8ux5bfc}}
-
-\hypertarget{ux63d2ux5165ux6392ux5e8f}{%
-\paragraph{插入排序}\label{ux63d2ux5165ux6392ux5e8f}}
-
-假定1*10\^{}4规模下的运行时间为基准，设为t1，规模为n1 = 10\^{}4。
-\[t_{1} = n_{1}^{2} \cdot t\] 。则n2规模下，
-\[t_{2}=n_{2}^{2} \cdot t = (\frac{n_{2}}{n_{1}}) ^ {2} \cdot t_{1}\] t1
-为实践所得，已知。而 \[n2 =  {k \cdot 10^{4},k \in (1,2,3,4,5)}\]
-
-\hypertarget{ux5f52ux5e76ux6392ux5e8f}{%
-\paragraph{归并排序}\label{ux5f52ux5e76ux6392ux5e8f}}
-
-假定1*10\^{}4规模下的运行时间为基准，设为t1，规模为n1 = 10\^{}4。
-\[t_{1} = n_{1} \cdot \log_2{n_{1}} \cdot t\] 。则n2规模下，
-\[t_{2}=n_{2} \cdot \log_2{n_{2}} \cdot t = (\frac{n_{2}}{n_{1}}) \times (\frac{\log_2{n_{2}}}{\log_2{n_{1}}}) \cdot t_{1} = (\frac{n_{2}}{n_{1}}) \times (\log_{n_{1}}{n_{2}}) \cdot t_{1}\]
-t1 为实践所得，已知。而 \[n2 =  {k \cdot 10^{4},k \in (1,2,3,4,5)}\]
-
-    \hypertarget{ux8ba1ux7b97ux7406ux8bbaux65f6ux95f4-ux51fdux6570ux5b9eux73b0}{%
-\subsubsection{计算理论时间
-函数实现}\label{ux8ba1ux7b97ux7406ux8bbaux65f6ux95f4-ux51fdux6570ux5b9eux73b0}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{8}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{k+kn}{import} \PY{n+nn}{math}
-
-\PY{k}{def} \PY{n+nf}{calculateTheoryTime\PYZus{}insertion}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{kArr}\PY{p}{)}\PY{p}{:}
-    \PY{n}{arr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{kArr}\PY{p}{:}
-        \PY{n}{res} \PY{o}{=} \PY{n}{math}\PY{o}{.}\PY{n}{pow}\PY{p}{(}\PY{n}{i}\PY{o}{/}\PY{n}{kArr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{*} \PY{n}{t}
-        \PY{n}{arr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{res}\PY{p}{)}
-    \PY{k}{return} \PY{n}{arr}
-
-\PY{k}{def} \PY{n+nf}{calculateTheoryTime\PYZus{}merge}\PY{p}{(}\PY{n}{t}\PY{p}{,}\PY{n}{kArr}\PY{p}{)}\PY{p}{:}
-    \PY{n}{arr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
-    \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{kArr}\PY{p}{:}
-        \PY{n}{res} \PY{o}{=} \PY{n}{i}\PY{o}{/}\PY{n}{kArr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{*} \PY{n}{math}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{i}\PY{p}{,}\PY{n}{kArr}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)} \PY{o}{*} \PY{n}{t}
-        \PY{n}{arr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{res}\PY{p}{)}
-    \PY{k}{return} \PY{n}{arr}
-\end{Verbatim}
-\end{tcolorbox}
-
-    \hypertarget{ux7406ux8bbaux4e0eux5b9eux8df5ux65f6ux95f4ux5bf9ux6bd4ux79d1ux5b66ux7ed8ux56fe}{%
-\subsubsection{理论与实践时间对比·科学绘图}\label{ux7406ux8bbaux4e0eux5b9eux8df5ux65f6ux95f4ux5bf9ux6bd4ux79d1ux5b66ux7ed8ux56fe}}
-
-    \begin{tcolorbox}[breakable, size=fbox, boxrule=1pt, pad at break*=1mm,colback=cellbackground, colframe=cellborder]
-\prompt{In}{incolor}{9}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-\PY{n}{theoryTime\PYZus{}insertion} \PY{o}{=} \PY{n}{calculateTheoryTime\PYZus{}insertion}\PY{p}{(}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{insertion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-
-\PY{n}{theoryTime\PYZus{}merge} \PY{o}{=} \PY{n}{calculateTheoryTime\PYZus{}merge}\PY{p}{(}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{merge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
-
-\PY{n}{dic\PYZus{}cmp\PYZus{}insertion} \PY{o}{=} \PY{p}{\PYZob{}}
-    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
-    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{theory}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{theoryTime\PYZus{}insertion}\PY{p}{,}
-    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reality}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{insertion}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-\PY{p}{\PYZcb{}}
-
-\PY{n}{dic\PYZus{}cmp\PYZus{}merge} \PY{o}{=} \PY{p}{\PYZob{}}
-    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,}
-    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{theory}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{theoryTime\PYZus{}merge}\PY{p}{,}
-    \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{reality}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{dic}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{merge}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
-\PY{p}{\PYZcb{}}
-
-\PY{n}{df\PYZus{}cmp\PYZus{}insertion} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{dic\PYZus{}cmp\PYZus{}insertion}\PY{p}{)}
-\PY{n}{df\PYZus{}cmp\PYZus{}merge} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{o}{.}\PY{n}{from\PYZus{}dict}\PY{p}{(}\PY{n}{dic\PYZus{}cmp\PYZus{}merge}\PY{p}{)}
-
-
-\PY{n}{df\PYZus{}cmp\PYZus{}insertion}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
-\PY{n}{df\PYZus{}cmp\PYZus{}merge}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{scale}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
-
-\PY{n}{df\PYZus{}cmp\PYZus{}insertion}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{rot}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.6}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}
-            \PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{markeredgewidth}\PY{o}{=}\PY{l+m+mi}{5}
-            \PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Insertion Sort}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-
-\PY{n}{df\PYZus{}cmp\PYZus{}merge}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{rot}\PY{o}{=}\PY{l+m+mi}{20}\PY{p}{,}\PY{n}{alpha}\PY{o}{=}\PY{l+m+mf}{0.6}\PY{p}{,}\PY{n}{linestyle}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{linewidth}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{marker}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.}\PY{l+s+s1}{\PYZsq{}}
-            \PY{p}{,}\PY{n}{markersize}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{5}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{n}{markeredgewidth}\PY{o}{=}\PY{l+m+mi}{5}
-            \PY{p}{,}\PY{n}{title}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Merge Sort}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
-\end{Verbatim}
-\end{tcolorbox}
-
-            \begin{tcolorbox}[breakable, size=fbox, boxrule=.5pt, pad at break*=1mm, opacityfill=0]
-\prompt{Out}{outcolor}{9}{\boxspacing}
-\begin{Verbatim}[commandchars=\\\{\}]
-<AxesSubplot: title=\{'center': 'Merge Sort'\}, xlabel='scale'>
-\end{Verbatim}
-\end{tcolorbox}
-        
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{lab_1_files/lab_1_16_1.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \begin{center}
-    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{lab_1_files/lab_1_16_2.png}
-    \end{center}
-    { \hspace*{\fill} \\}
-    
-    \hypertarget{ux5206ux6790}{%
-\subsubsection{分析}\label{ux5206ux6790}}
-
-观察理论与实践的时间对比。归并排序与插入排序的两条曲线几近相等。
-
-但是整体上，理论却偏高于实际用时。
-
-通过探讨分析研究，我认为，出现如上现象的原因是python在做大量重复性数据操纵时，进行了优化。使得在规模越大时，时间却比以1万规模为基准的用时少。
-
-    \hypertarget{ux8fd0ux884cux4ee3ux7801ux622aux56fe}{%
-\subsubsection{运行代码截图}\label{ux8fd0ux884cux4ee3ux7801ux622aux56fe}}
+\begin{figure}
+\centering
+\includegraphics{./img/1.png}
+\caption{如图所示}
+\end{figure}
 
 https://github.com/yuxiio/ItA\_lab.git 代码仓库地址
 
-ps.
-23分钟用时（python真的慢\ldots 我用的还是3.11版本，官方誉为最快的一代python\ldots）
-\includegraphics{./1.png}
+\hypertarget{ux603bux7ed3}{%
+\subsection{总结}\label{ux603bux7ed3}}
 
-    \hypertarget{ux8c03ux8bd5ux8fc7ux7a0bux4e2dux9047ux5230ux7684ux95eeux9898}{%
-\subsection{调试过程中遇到的问题}\label{ux8c03ux8bd5ux8fc7ux7a0bux4e2dux9047ux5230ux7684ux95eeux9898}}
+设计算法问题时，应该考虑效率的同时，一定要保证可测试性和通用性。
 
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\tightlist
-\item
-  归并忘了咋写，看了看课本CLRS，又想起来了，还学会了哨兵写法。
-\item
-  python运行太慢，没办法解决，只能挂着运行。
-\item
-  pandas好久不用忘了咋写，看了看教程，复习了一下画图
-\item
-  之前跑的一遍实验用时40分钟，插入排序规模5万时理论值与实际值相差甚大，（正常为60秒多，那一次却平均用时160秒）不懂原因。想了好久，查阅各种资料，询问chatGPT，勉强得出一个结论：挂后台运行时电脑息屏，导致CPU输出功率下降，使得运算时间大量上升。
-\item
-  jupyter 导出为中文pdf很麻烦，调试了好久，才勉强弄出一版。
-\end{enumerate}
+因此我们可以设计一个通用测试框架，使用官方库运行出一个成功实例来对照。
 
-\hypertarget{ux603bux7ed3ux5206ux6790}{%
-\subsection{总结分析}\label{ux603bux7ed3ux5206ux6790}}
+当然本次实验中我也遇到了很多问题，比如python的变量实质其实就是名字标签加内存空间的绑定。因此list的复制和操作一定要注意。
 
-插入排序与归并排序的性能果真天差地别。无论是从时间复杂度公式来看，还是运行实践结果来看，归并排序的速度远高与插入排序，而且也同时具备稳定的效果。
+同时我还遇到了TypeError: `list' object is not callable的错误。
 
-但是归并排序是利用递归处理，递归调用需要一定的栈空间来保存函数调用的上下文信息，如果递归的深度过大，栈空间可能会不足导致栈溢出。此外，递归调用还需要在每次函数调用时保存一些状态信息，也会占用额外的空间。
-
-本次实验，我进一步学会了用jupyter
-notebook来进行科学运算探究。发现python写起来确实简单易懂，但是通过实验探究，发现python的运行效率确实低下（相较于Java，C系）。（但是运行时间长从另外一个角度看，可能并不是一件坏事，在它漫长的运行时间中，可以摸鱼喝茶等待，减少内卷，解放程序员\ldots）
+通过debug我了解到了，在python中，尽量不要将变量命名为特定包的名字，不然变量名覆盖冲突会导致代码运行错误。
+这是一个值得记住的编程经验。
 
 
     % Add a bibliography block to the postdoc
